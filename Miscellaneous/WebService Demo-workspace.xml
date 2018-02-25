@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-workspace name="WebService Demo" soapui-version="5.0.0" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings/>
+  <con:project name="WebService Demo">C:/snapshotviews/wngautomation/git/WEBSERVICE_DEMO/WebService Demo-soapui-project.xml</con:project>
+</con:soapui-workspace>

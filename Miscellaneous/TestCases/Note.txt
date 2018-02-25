@@ -1,0 +1,2 @@
+this folder will contain exported test cases from soapUI.
+The experted test cases will come handy when multiple developer developing automation in same project.
