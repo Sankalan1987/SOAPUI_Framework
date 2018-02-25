@@ -296,7 +296,25 @@ Delete user</con:description><con:settings/><con:parameters><con:parameter requi
          <web:CountryName>?</web:CountryName>\r
       </web:GetWeather>\r
    </soap:Body>\r
-</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.webserviceX.NET/GlobalWeatherSoap/GetWeatherRequest"/></con:call></con:operation></con:interface><con:testSuite name="DriverSuite" id="8544ffe4-2743-4588-9991-10423bbb646a"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Driver" searchProperties="true" id="cfb0e8a1-c018-4501-a420-2e014d41ffb4"><con:settings/><con:testStep type="groovy" name="DriverGroovyScript" id="718ef979-b345-477d-9793-c2d0a2d35bcc"><con:settings/><con:config><script><![CDATA[import java.io.*;
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.webserviceX.NET/GlobalWeatherSoap/GetWeatherRequest"/></con:call></con:operation></con:interface><con:testSuite name="DriverSuite" id="8544ffe4-2743-4588-9991-10423bbb646a"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Driver" searchProperties="true" id="cfb0e8a1-c018-4501-a420-2e014d41ffb4"><con:settings/><con:testStep type="groovy" name="AddJars" id="e108b54b-ff24-49c1-ba74-ec6b9db6d819"><con:settings/><con:config><script>import java.io.File;
+
+/*Add Required JAR Files in Driver Script*/
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils( context )
+def classpathHacker = new com.eviware.soapui.support.ClasspathHacker ()
+File dir = new File(groovyUtils.getProjectPath()+"/Miscellaneous/Required_Jars");
+File[] files = dir.listFiles(new FilenameFilter() {
+    public boolean accept(File direc, String name) {
+        return name.toLowerCase().endsWith(".jar");
+    }
+});
+
+for(File file : files)
+{
+	log.info file.getAbsolutePath()
+	classpathHacker.addFile( file )
+	com.eviware.soapui.support.ClasspathHacker.addFile( file )	
+	com.eviware.soapui.support.ClasspathHacker.addURL( new URL("file://" + file.getAbsolutePath()) )
+}</script></con:config></con:testStep><con:testStep type="groovy" name="DriverGroovyScript" id="718ef979-b345-477d-9793-c2d0a2d35bcc"><con:settings/><con:config><script><![CDATA[import java.io.*;
 import java.sql.*;
 import java.sql.ResultSet;
 import java.text.*;
@@ -361,24 +379,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import com.microsoft.sqlserver.jdbc.*;
-
-/*Add Required JAR Files in Driver Script*/
-def groovyUtils = new com.eviware.soapui.support.GroovyUtils( context )
-def classpathHacker = new com.eviware.soapui.support.ClasspathHacker ()
-File dir = new File(groovyUtils.getProjectPath()+"/Miscellaneous/Required_Jars");
-File[] files = dir.listFiles(new FilenameFilter() {
-    public boolean accept(File direc, String name) {
-        return name.toLowerCase().endsWith(".jar");
-    }
-});
-
-for(File file : files)
-{
-	log.info file.getAbsolutePath()
-	classpathHacker.addFile( file )
-	com.eviware.soapui.support.ClasspathHacker.addFile( file )	
-	com.eviware.soapui.support.ClasspathHacker.addURL( new URL("file://" + file.getAbsolutePath()) )
-}
 
 String ParentFolder = null;
 
