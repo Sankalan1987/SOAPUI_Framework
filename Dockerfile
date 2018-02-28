@@ -26,5 +26,3 @@ ENV PATH ${PATH}:/opt/SoapUI/bin
 
 # cleanup
 RUN apt-get -qy autoremove
-
-ENTRYPOINT ["/bin/bash"]
