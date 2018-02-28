@@ -1,4 +1,5 @@
-FROM openjdk:8-jre-alpine
+FROM centos:7
+FROM java:openjdk-7-jdk
 MAINTAINER Sankalan Banerjee <banerjee.sankalan2@gmail.com>
 
 # Install curl
