@@ -2,10 +2,6 @@ FROM centos:7
 FROM java:openjdk-7-jdk
 MAINTAINER Sankalan Banerjee <banerjee.sankalan2@gmail.com>
 
-# Install curl
-RUN apk add --update curl && \
-    rm -rf /var/cache/apk/*
-	
 #  Version
 ENV   SOAPUI_VERSION  5.2.1
 
