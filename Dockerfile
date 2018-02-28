@@ -1,10 +1,6 @@
 FROM openjdk:8-jre-alpine
 MAINTAINER Sankalan Banerjee <banerjee.sankalan2@gmail.com>
 
-# update sources list
-RUN apt-get clean
-RUN apt-get update
-
 # Install curl
 RUN apk add --update curl && \
     rm -rf /var/cache/apk/*
@@ -24,5 +20,4 @@ WORKDIR /opt/bin
 # Set environment
 ENV PATH ${PATH}:/opt/SoapUI/bin
 
-# cleanup
-RUN apt-get -qy autoremove
+ENTRYPOINT ["/bin/bash"]
