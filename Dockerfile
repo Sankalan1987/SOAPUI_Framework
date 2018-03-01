@@ -16,4 +16,3 @@ WORKDIR /opt/SoapUI/bin
 
 # Set environment
 ENV PATH ${PATH}:/opt/SoapUI/bin
-ENTRYPOINT ["/bin/bash"]
