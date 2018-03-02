@@ -1,3 +1,4 @@
+FROM jenkinsci/jnlp-slave
 FROM centos:7
 FROM java:openjdk-7-jdk
 MAINTAINER Sankalan Banerjee <banerjee.sankalan2@gmail.com>
@@ -9,10 +10,10 @@ ENV   SOAPUI_VERSION  5.2.1
 RUN mkdir -p /opt &&\
     curl  http://smartbearsoftware.com/distrib/soapui/5.2.1/SoapUI-5.2.1-linux-bin.tar.gz \
     | gunzip -c - | tar -xf - -C /opt && \
-    ln -s /opt/SoapUI-${SOAPUI_VERSION} /opt/SoapUI
+    ln -s /var/SoapUI-${SOAPUI_VERSION} /var/SoapUI
 
 # Set working directory
-WORKDIR /opt/SoapUI/bin
+WORKDIR /var/SoapUI/bin
 
 # Set environment
-ENV PATH ${PATH}:/opt/SoapUI/bin
+ENV PATH ${PATH}:/var/SoapUI/bin
