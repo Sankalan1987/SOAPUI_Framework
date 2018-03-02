@@ -10,10 +10,10 @@ ENV   SOAPUI_VERSION  5.2.1
 RUN mkdir -p /opt &&\
     curl  http://smartbearsoftware.com/distrib/soapui/5.2.1/SoapUI-5.2.1-linux-bin.tar.gz \
     | gunzip -c - | tar -xf - -C /opt && \
-    ln -s /var/SoapUI-${SOAPUI_VERSION} /var/SoapUI
+    ln -s /opt/SoapUI-${SOAPUI_VERSION} /opt/SoapUI
 
 # Set working directory
-WORKDIR /var/SoapUI/bin
+WORKDIR /opt/SoapUI/bin
 
 # Set environment
-ENV PATH ${PATH}:/var/SoapUI/bin
+ENV PATH ${PATH}:/opt/SoapUI/bin
