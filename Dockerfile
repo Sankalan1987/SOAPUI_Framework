@@ -17,3 +17,4 @@ WORKDIR /var/SoapUI/bin
 
 # Set environment
 ENV PATH ${PATH}:/var/SoapUI/bin
+ENTRYPOINT ["testrunner.sh"]
