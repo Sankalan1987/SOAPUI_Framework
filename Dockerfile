@@ -1,19 +1,23 @@
-FROM jenkinsci/jnlp-slave
-FROM centos:7
-FROM java:openjdk-7-jdk
-MAINTAINER Sankalan <banerjee.sankalan2@gmail.com>
-#  Version
-ENV   SOAPUI_VERSION  5.2.1
+FROM openjdk:8-jre-alpine
+MAINTAINER Luka Stosic INFOdation <lstosic@infodation.nl>
+
+# Install curl
+RUN apk add --update curl && \
+    rm -rf /var/cache/apk/*
+
+# SOAP UI Version to download
+ENV SOAPUI_VERSION 5.2.1
 
 # Download and unarchive SoapUI
-RUN mkdir -p /var &&\
-    curl  http://smartbearsoftware.com/distrib/soapui/5.2.1/SoapUI-5.2.1-linux-bin.tar.gz \
+RUN mkdir -p /opt/soapui/projects/Results
+RUN mkdir -p /opt &&\
+    curl  http://cdn01.downloads.smartbear.com/soapui/${SOAPUI_VERSION}/SoapUI-${SOAPUI_VERSION}-linux-bin.tar.gz \
     | gunzip -c - | tar -xf - -C /opt && \
-    ln -s /var/SoapUI-${SOAPUI_VERSION} /var/SoapUI
-
-# Set working directory
-WORKDIR /var/SoapUI/bin
+    ln -s /opt/SoapUI-${SOAPUI_VERSION} /opt/SoapUI
 
 # Set environment
-ENV PATH ${PATH}:/var/SoapUI/bin
-CMD ["sh", "-c", "tail -f /dev/null"]
+ENV PATH ${PATH}:/opt/SoapUI/bin
+
+WORKDIR /opt/SoapUI/bin
+
+ENTRYPOINT ["testrunner.sh"]
