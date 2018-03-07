@@ -4769,9 +4769,9 @@ public class ReportingClass {
 
     "</div>" +
 
-    "<br><div align=\"center\"><div color=\"000001\" letter-spacing =\"1px\" font-family = \"Georgia,\"Times New Roman\", Times, serif\" font-size = \"14px\" font-weight = \"normal\" align=\"center\">Result folder location : </div>" + "<a href=\"" + reportPath + "\">" + reportPath + "</a></div>" +
+    "<br><div align=\"center\"><div color=\"585858\" letter-spacing =\"1px\" font-family = \"Georgia,\"Times New Roman\", Times, serif\" font-size = \"14px\" font-weight = \"normal\" align=\"center\">Result folder location : </div>" + "<a href=\"" + reportPath + "Summary.html" + "\">" + reportPath + "Summary.html" + "</a></div>" +
 
-    "<br><div align=\"left\"><div color=\"000001\" letter-spacing =\"1px\" font-family = \"Georgia,\"Times New Roman\", Times, serif\" font-size = \"14px\" font-weight = \"normal\" align=\"center\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Report best view	 in Internet Explorer</div></div>" +
+    "<br><div align=\"left\"><div color=\"#585858\" letter-spacing =\"1px\" font-family = \"Georgia,\"Times New Roman\", Times, serif\" font-size = \"14px\" font-weight = \"normal\" align=\"center\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Report best view	 in Internet Explorer</div></div>" +
 
     "</body>" +
 
