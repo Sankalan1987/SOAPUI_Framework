@@ -1,320 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project activeEnvironment="Default" name="WebServiceDemo" soapui-version="5.3.0" abortOnError="false" runType="SEQUENTIAL" resourceRoot="" id="3dd3990c-115a-4215-8d78-5374ffc1c4f9" xmlns:con="http://eviware.com/soapui/config"><con:settings/>
-.
-
-
-
-
-
-
-
-
-
-
-
-
-<con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="GlobalWeatherSoap" type="wsdl" bindingName="{http://www.webserviceX.NET}GlobalWeatherSoap" soapVersion="1_1" anonymous="optional" definition="http://www.webservicex.net/globalweather.asmx?WSDL" id="6a549895-6db1-4867-a053-12e714d259d8" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://www.webservicex.net/globalweather.asmx?WSDL"><con:part><con:url>http://www.webservicex.net/globalweather.asmx?WSDL</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://www.webserviceX.NET" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.webserviceX.NET" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-  <wsdl:types>
-    <s:schema elementFormDefault="qualified" targetNamespace="http://www.webserviceX.NET">
-      <s:element name="GetWeather">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="CityName" type="s:string"/>
-            <s:element minOccurs="0" maxOccurs="1" name="CountryName" type="s:string"/>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetWeatherResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetWeatherResult" type="s:string"/>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetCitiesByCountry">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="CountryName" type="s:string"/>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetCitiesByCountryResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetCitiesByCountryResult" type="s:string"/>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="string" nillable="true" type="s:string"/>
-    </s:schema>
-  </wsdl:types>
-  <wsdl:message name="GetWeatherSoapIn">
-    <wsdl:part name="parameters" element="tns:GetWeather"/>
-  </wsdl:message>
-  <wsdl:message name="GetWeatherSoapOut">
-    <wsdl:part name="parameters" element="tns:GetWeatherResponse"/>
-  </wsdl:message>
-  <wsdl:message name="GetCitiesByCountrySoapIn">
-    <wsdl:part name="parameters" element="tns:GetCitiesByCountry"/>
-  </wsdl:message>
-  <wsdl:message name="GetCitiesByCountrySoapOut">
-    <wsdl:part name="parameters" element="tns:GetCitiesByCountryResponse"/>
-  </wsdl:message>
-  <wsdl:message name="GetWeatherHttpGetIn">
-    <wsdl:part name="CityName" type="s:string"/>
-    <wsdl:part name="CountryName" type="s:string"/>
-  </wsdl:message>
-  <wsdl:message name="GetWeatherHttpGetOut">
-    <wsdl:part name="Body" element="tns:string"/>
-  </wsdl:message>
-  <wsdl:message name="GetCitiesByCountryHttpGetIn">
-    <wsdl:part name="CountryName" type="s:string"/>
-  </wsdl:message>
-  <wsdl:message name="GetCitiesByCountryHttpGetOut">
-    <wsdl:part name="Body" element="tns:string"/>
-  </wsdl:message>
-  <wsdl:message name="GetWeatherHttpPostIn">
-    <wsdl:part name="CityName" type="s:string"/>
-    <wsdl:part name="CountryName" type="s:string"/>
-  </wsdl:message>
-  <wsdl:message name="GetWeatherHttpPostOut">
-    <wsdl:part name="Body" element="tns:string"/>
-  </wsdl:message>
-  <wsdl:message name="GetCitiesByCountryHttpPostIn">
-    <wsdl:part name="CountryName" type="s:string"/>
-  </wsdl:message>
-  <wsdl:message name="GetCitiesByCountryHttpPostOut">
-    <wsdl:part name="Body" element="tns:string"/>
-  </wsdl:message>
-  <wsdl:portType name="GlobalWeatherSoap">
-    <wsdl:operation name="GetWeather">
-      <wsdl:documentation>Get weather report for all major cities around the world.</wsdl:documentation>
-      <wsdl:input message="tns:GetWeatherSoapIn"/>
-      <wsdl:output message="tns:GetWeatherSoapOut"/>
-    </wsdl:operation>
-    <wsdl:operation name="GetCitiesByCountry">
-      <wsdl:documentation>Get all major cities by country name(full / part).</wsdl:documentation>
-      <wsdl:input message="tns:GetCitiesByCountrySoapIn"/>
-      <wsdl:output message="tns:GetCitiesByCountrySoapOut"/>
-    </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:portType name="GlobalWeatherHttpGet">
-    <wsdl:operation name="GetWeather">
-      <wsdl:documentation>Get weather report for all major cities around the world.</wsdl:documentation>
-      <wsdl:input message="tns:GetWeatherHttpGetIn"/>
-      <wsdl:output message="tns:GetWeatherHttpGetOut"/>
-    </wsdl:operation>
-    <wsdl:operation name="GetCitiesByCountry">
-      <wsdl:documentation>Get all major cities by country name(full / part).</wsdl:documentation>
-      <wsdl:input message="tns:GetCitiesByCountryHttpGetIn"/>
-      <wsdl:output message="tns:GetCitiesByCountryHttpGetOut"/>
-    </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:portType name="GlobalWeatherHttpPost">
-    <wsdl:operation name="GetWeather">
-      <wsdl:documentation>Get weather report for all major cities around the world.</wsdl:documentation>
-      <wsdl:input message="tns:GetWeatherHttpPostIn"/>
-      <wsdl:output message="tns:GetWeatherHttpPostOut"/>
-    </wsdl:operation>
-    <wsdl:operation name="GetCitiesByCountry">
-      <wsdl:documentation>Get all major cities by country name(full / part).</wsdl:documentation>
-      <wsdl:input message="tns:GetCitiesByCountryHttpPostIn"/>
-      <wsdl:output message="tns:GetCitiesByCountryHttpPostOut"/>
-    </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:binding name="GlobalWeatherSoap" type="tns:GlobalWeatherSoap">
-    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="GetWeather">
-      <soap:operation soapAction="http://www.webserviceX.NET/GetWeather" style="document"/>
-      <wsdl:input>
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetCitiesByCountry">
-      <soap:operation soapAction="http://www.webserviceX.NET/GetCitiesByCountry" style="document"/>
-      <wsdl:input>
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:binding name="GlobalWeatherSoap12" type="tns:GlobalWeatherSoap">
-    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="GetWeather">
-      <soap12:operation soapAction="http://www.webserviceX.NET/GetWeather" style="document"/>
-      <wsdl:input>
-        <soap12:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetCitiesByCountry">
-      <soap12:operation soapAction="http://www.webserviceX.NET/GetCitiesByCountry" style="document"/>
-      <wsdl:input>
-        <soap12:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:binding name="GlobalWeatherHttpGet" type="tns:GlobalWeatherHttpGet">
-    <http:binding verb="GET"/>
-    <wsdl:operation name="GetWeather">
-      <http:operation location="/GetWeather"/>
-      <wsdl:input>
-        <http:urlEncoded/>
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetCitiesByCountry">
-      <http:operation location="/GetCitiesByCountry"/>
-      <wsdl:input>
-        <http:urlEncoded/>
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body"/>
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:binding name="GlobalWeatherHttpPost" type="tns:GlobalWeatherHttpPost">
-    <http:binding verb="POST"/>
-    <wsdl:operation name="GetWeather">
-      <http:operation location="/GetWeather"/>
-      <wsdl:input>
-        <mime:content type="application/x-www-form-urlencoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetCitiesByCountry">
-      <http:operation location="/GetCitiesByCountry"/>
-      <wsdl:input>
-        <mime:content type="application/x-www-form-urlencoded"/>
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body"/>
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:service name="GlobalWeather">
-    <wsdl:port name="GlobalWeatherSoap" binding="tns:GlobalWeatherSoap">
-      <soap:address location="http://www.webservicex.net/globalweather.asmx"/>
-    </wsdl:port>
-    <wsdl:port name="GlobalWeatherSoap12" binding="tns:GlobalWeatherSoap12">
-      <soap12:address location="http://www.webservicex.net/globalweather.asmx"/>
-    </wsdl:port>
-    <wsdl:port name="GlobalWeatherHttpGet" binding="tns:GlobalWeatherHttpGet">
-      <http:address location="http://www.webservicex.net/globalweather.asmx"/>
-    </wsdl:port>
-    <wsdl:port name="GlobalWeatherHttpPost" binding="tns:GlobalWeatherHttpPost">
-      <http:address location="http://www.webservicex.net/globalweather.asmx"/>
-    </wsdl:port>
-  </wsdl:service>
-</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://www.webservicex.net/globalweather.asmx</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://www.webserviceX.NET/GetCitiesByCountry" name="GetCitiesByCountry" bindingOperationName="GetCitiesByCountry" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional" id="ced083f0-54bb-460a-83f6-42fdb3d10bc4"><con:settings/><con:call name="Request 1" id="fd25203d-d249-4a76-9981-6d3f215ef03c"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.webservicex.net/globalweather.asmx</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
-  <soap12:Body>
-    <GetCitiesByCountry xmlns="http://www.webserviceX.NET">
-      <CountryName>INDIA</CountryName>
-    </GetCitiesByCountry>
-  </soap12:Body>
-</soap12:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.webserviceX.NET/GetCitiesByCountry"/><con:wsrmConfig version="1.2"/></con:call><con:call id="c193ef00-bb9e-4863-ab4d-1bfdaa317c07" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.webservicex.net/globalweather.asmx</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://www.webserviceX.NET">\r
-   <soapenv:Header/>\r
-   <soapenv:Body>\r
-      <web:GetCitiesByCountry>\r
-         <!--Optional:-->\r
-         <web:CountryName>US</web:CountryName>\r
-      </web:GetCitiesByCountry>\r
-   </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.webserviceX.NET/GetCitiesByCountry"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="http://www.webserviceX.NET/GetWeather" name="GetWeather" bindingOperationName="GetWeather" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional" id="863a2e2e-1cdb-46b8-ac8e-4d5ef87974fd"><con:settings/><con:call name="Request 1" id="e22bda2c-c9f0-493c-99d4-943e5bc45d42"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.webservicex.net/globalweather.asmx</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://www.webserviceX.NET">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <web:GetWeather>
-         <!--Optional:-->
-         <web:CityName>?</web:CityName>
-         <!--Optional:-->
-         <web:CountryName>?</web:CountryName>
-      </web:GetWeather>
-   </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.webserviceX.NET/GetWeather"/><con:wsrmConfig version="1.2"/></con:call><con:call id="53513b88-d420-40ae-b3a4-2547ffd4ee7c" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.webservicex.net/globalweather.asmx</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://www.webserviceX.NET">\r
-   <soapenv:Header/>\r
-   <soapenv:Body>\r
-      <web:GetWeather>\r
-         <!--Optional:-->\r
-         <web:CityName>?</web:CityName>\r
-         <!--Optional:-->\r
-         <web:CountryName>?</web:CountryName>\r
-      </web:GetWeather>\r
-   </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.webserviceX.NET/GetWeather"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://api.openweathermap.org" type="rest" id="361295b9-ff02-4f50-ba80-887475fde007" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://api.openweathermap.org</con:endpoint></con:endpoints><con:resource name="" path="/data/2.5/weather" id="fc48a5cd-9e18-4c70-820e-68c7e8ac8217"><con:settings/><con:parameters><con:parameter><con:name>zip</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>appid</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="Weather" method="GET" id="ed676626-86a0-458e-8327-48aa6fa8ab3e"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:weat="http://api.openweathermap.org/data/2.5/weather">weat:Response</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>401 404</con:status><con:params/><con:element xmlns:weat="http://api.openweathermap.org/data/2.5/weather">weat:Fault</con:element></con:representation><con:request name="Request 1" mediaType="application/json" id="b7664741-a552-4749-b0b1-7b96ee5453be"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://api.openweathermap.org</con:endpoint><con:request/><con:originalUri>http://api.openweathermap.org/data/2.5/weather</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
-  <con:entry key="zip" value="${In-Properties#ZipCode},${In-Properties#CountryCode}"/>
-  <con:entry key="appid" value="${In-Properties#AppID}"/>
-</con:parameters><con:parameterOrder><con:entry>zip</con:entry><con:entry>appid</con:entry></con:parameterOrder></con:request></con:method></con:resource></con:interface><con:interface xsi:type="con:RestService" id="7f33dfc2-6539-48a5-a8a0-4cec8f1b76c6" wadlVersion="http://wadl.dev.java.net/2009/02" name="Swagger Petstore" type="rest" basePath="/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:description>This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key `special-key` to test the authorization filters.</con:description><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://petstore.swagger.io</con:endpoint></con:endpoints><con:resource name="/pet" path="/pet" id="603c9d2d-448d-4dbb-a99d-33da6308edf7"><con:settings/><con:parameters/><con:method name="addPet" id="65799421-09eb-43bb-83fb-dffe34e2661b" method="POST"><con:description>
-Add a new pet to the store</con:description><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>405</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>405</con:status><con:params/></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="REQUEST"><con:mediaType>application/xml</con:mediaType><con:params/></con:representation><con:request name="Request 1" id="ba5fe1e9-07c3-4b0c-92dd-b5a352955e8a" mediaType="application/json" postQueryString="false"><con:settings/><con:endpoint>http://petstore.swagger.io</con:endpoint><con:request/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method><con:method name="updatePet" id="4377012c-d2df-459f-9363-10a040306528" method="PUT"><con:description>
-Update an existing pet</con:description><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>400</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>400 200</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>404</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>404</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>405</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>405</con:status><con:params/></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="REQUEST"><con:mediaType>application/xml</con:mediaType><con:params/></con:representation><con:request name="Request 1" id="ef93fb47-b3a9-4aeb-9ea8-e498feef6460" mediaType="application/json"><con:settings/><con:endpoint>http://petstore.swagger.io</con:endpoint><con:parameters/></con:request></con:method></con:resource><con:resource name="/pet/findByStatus" path="/pet/findByStatus" id="7981be7b-eaa8-4d15-aea6-b7632f1dfdb2"><con:settings/><con:parameters/><con:method name="findPetsByStatus" id="24828432-b7a2-4991-86cd-b4dc57f7b3b3" method="GET"><con:description>Multiple status values can be provided with comma separated strings
-Finds Pets by status</con:description><con:settings/><con:parameters><con:parameter required="true"><con:name>status</con:name><con:style>QUERY</con:style><con:description>Status values that need to be considered for filter</con:description></con:parameter></con:parameters><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>400</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>400</con:status><con:params/></con:representation><con:request name="Request 1" id="5d27db9b-3b95-47b2-b3cc-3441bb6b4ffb" mediaType="application/json"><con:settings/><con:endpoint>http://petstore.swagger.io</con:endpoint><con:parameters/></con:request></con:method></con:resource><con:resource name="/pet/findByTags" path="/pet/findByTags" id="b884205f-9fc1-43f4-946f-4a8cca1cfe25"><con:settings/><con:parameters/><con:method name="findPetsByTags" id="e4248a65-e63a-4692-94ee-15d5c4751422" method="GET"><con:description>Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
-Finds Pets by tags</con:description><con:settings/><con:parameters><con:parameter required="true"><con:name>tags</con:name><con:style>QUERY</con:style><con:description>Tags to filter by</con:description></con:parameter></con:parameters><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>400</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>400</con:status><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>application/json</con:mediaType><con:status>500</con:status><con:params/><con:element xmlns:fin="http://petstore.swagger.io/v2/pet/findByTags">fin:Fault</con:element></con:representation><con:request name="Request 1" id="bae92ae7-7e38-4c5f-b261-ff61c7264dde" mediaType="application/json"><con:settings/><con:endpoint>http://petstore.swagger.io</con:endpoint><con:parameters/></con:request></con:method></con:resource><con:resource name="/pet/{petId}" path="/pet/{petId}" id="0c93970e-cb60-4f0d-8ca2-afc111ecfca0"><con:settings/><con:parameters/><con:method name="getPetById" id="1dcfe15e-240e-4975-926d-fe2529fc4e7a" method="GET"><con:description>Returns a single pet
-Find pet by ID</con:description><con:settings/><con:parameters><con:parameter required="true"><con:name>petId</con:name><con:style>TEMPLATE</con:style><con:description>ID of pet to return</con:description></con:parameter></con:parameters><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>400</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>400</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>404</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>404</con:status><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>application/xml</con:mediaType><con:status>405</con:status><con:params/><con:element>apiResponse</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/json</con:mediaType><con:status>404</con:status><con:params/><con:element xmlns:pet="http://petstore.swagger.io/v2/pet/">pet:Fault</con:element></con:representation><con:request name="Request 1" id="6cce0700-b154-4b45-b22c-ba37c5a836db" mediaType="application/json"><con:settings/><con:endpoint>http://petstore.swagger.io</con:endpoint><con:parameters/></con:request></con:method><con:method name="updatePetWithForm" id="4f9122b4-b18a-48e4-9354-540cfe6c5549" method="POST"><con:description>
-Updates a pet in the store with form data</con:description><con:settings/><con:parameters><con:parameter required="true"><con:name>petId</con:name><con:style>TEMPLATE</con:style><con:description>ID of pet that needs to be updated</con:description></con:parameter><con:parameter><con:name>name</con:name><con:style>QUERY</con:style><con:description>Updated name of the pet</con:description></con:parameter><con:parameter><con:name>status</con:name><con:style>QUERY</con:style><con:description>Updated status of the pet</con:description></con:parameter></con:parameters><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>405</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>405</con:status><con:params/></con:representation><con:representation type="REQUEST"><con:mediaType>application/x-www-form-urlencoded</con:mediaType><con:params/></con:representation><con:request name="Request 1" id="11870f2f-5d8f-4b8d-aa8b-0d2f7fd40d05" mediaType="application/x-www-form-urlencoded"><con:settings/><con:endpoint>http://petstore.swagger.io</con:endpoint><con:parameters/></con:request></con:method><con:method name="deletePet" id="6e94bb89-e0f0-4151-a737-7b60928c2c11" method="DELETE"><con:description>
-Deletes a pet</con:description><con:settings/><con:parameters><con:parameter><con:name>api_key</con:name><con:style>HEADER</con:style><con:description xsi:nil="true"/></con:parameter><con:parameter required="true"><con:name>petId</con:name><con:style>TEMPLATE</con:style><con:description>Pet id to delete</con:description></con:parameter></con:parameters><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>400</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>400</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>404</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>404</con:status><con:params/></con:representation><con:request name="Request 1" id="2cf74981-a252-4eae-a126-8856adc7750c" mediaType="application/json"><con:settings/><con:endpoint>http://petstore.swagger.io</con:endpoint><con:parameters/></con:request></con:method></con:resource><con:resource name="/pet/{petId}/uploadImage" path="/pet/{petId}/uploadImage" id="3ec74d47-0f03-4e86-9cad-1184c691b3a5"><con:settings/><con:parameters/><con:method name="uploadFile" id="26a880c1-11bf-4798-b017-da7098b2c1fb" method="POST"><con:description>
-uploads an image</con:description><con:settings/><con:parameters><con:parameter required="true"><con:name>petId</con:name><con:style>TEMPLATE</con:style><con:description>ID of pet to update</con:description></con:parameter><con:parameter><con:name>additionalMetadata</con:name><con:style>QUERY</con:style><con:description>Additional data to pass to server</con:description></con:parameter><con:parameter><con:name>file</con:name><con:style>QUERY</con:style><con:description>file to upload</con:description></con:parameter></con:parameters><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="REQUEST"><con:mediaType>multipart/form-data</con:mediaType><con:params/></con:representation><con:request name="Request 1" id="9430d692-fc9c-4e9e-81a7-b508471b05fc" mediaType="multipart/form-data"><con:settings/><con:endpoint>http://petstore.swagger.io</con:endpoint><con:parameters/></con:request></con:method></con:resource><con:resource name="/store/inventory" path="/store/inventory" id="a4d028b6-169c-4276-bbdc-b8d8977cc62e"><con:settings/><con:parameters/><con:method name="getInventory" id="055c19c9-7b0a-412c-9664-ba453f8c47ed" method="GET"><con:description>Returns a map of status codes to quantities
-Returns pet inventories by status</con:description><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:request name="Request 1" id="974cd746-a16d-4a23-b88d-afa4d9a60356" mediaType="application/json"><con:settings/><con:endpoint>http://petstore.swagger.io</con:endpoint><con:parameters/></con:request></con:method></con:resource><con:resource name="/store/order" path="/store/order" id="62493fcf-177e-45f9-af6f-7f695ccac621"><con:settings/><con:parameters/><con:method name="placeOrder" id="e33e6809-d612-419a-83c2-cd6f5b814e28" method="POST"><con:description>
-Place an order for a pet</con:description><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>400</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>400</con:status><con:params/></con:representation><con:request name="Request 1" id="79a4e458-90fe-47c0-868f-069b1aec010e" mediaType="application/json"><con:settings/><con:endpoint>http://petstore.swagger.io</con:endpoint><con:parameters/></con:request></con:method></con:resource><con:resource name="/store/order/{orderId}" path="/store/order/{orderId}" id="8b6fa877-9925-4ac4-bca0-4713a03daa07"><con:settings/><con:parameters/><con:method name="getOrderById" id="a6f6092a-f528-4724-b508-13823da26857" method="GET"><con:description>For valid response try integer IDs with value >= 1 and &lt;= 10. Other values will generated exceptions
-Find purchase order by ID</con:description><con:settings/><con:parameters><con:parameter required="true"><con:name>orderId</con:name><con:style>TEMPLATE</con:style><con:description>ID of pet that needs to be fetched</con:description></con:parameter></con:parameters><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>400</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>400</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>404</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>404</con:status><con:params/></con:representation><con:request name="Request 1" id="ef75909b-1f9f-4f00-879f-e0be48c8aeb3" mediaType="application/json"><con:settings/><con:endpoint>http://petstore.swagger.io</con:endpoint><con:parameters/></con:request></con:method><con:method name="deleteOrder" id="7ce2b5a3-bfd3-44d9-b431-87e837a9110c" method="DELETE"><con:description>For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors
-Delete purchase order by ID</con:description><con:settings/><con:parameters><con:parameter required="true"><con:name>orderId</con:name><con:style>TEMPLATE</con:style><con:description>ID of the order that needs to be deleted</con:description></con:parameter></con:parameters><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>400</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>400</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>404</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>404</con:status><con:params/></con:representation><con:request name="Request 1" id="ae33a1b8-4206-4a44-8dc4-0043da15e2d1" mediaType="application/json"><con:settings/><con:endpoint>http://petstore.swagger.io</con:endpoint><con:parameters/></con:request></con:method></con:resource><con:resource name="/user" path="/user" id="7e2266a1-7712-4385-a7d6-1edcc0c583d0"><con:settings/><con:parameters/><con:method name="createUser" id="45c5fa1e-85cc-4f1f-80de-1ee425e11654" method="POST"><con:description>This can only be done by the logged in user.
-Create user</con:description><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status/><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status/><con:params/></con:representation><con:request name="Request 1" id="c1072882-9e81-4860-aa27-93b033119398" mediaType="application/json"><con:settings/><con:endpoint>http://petstore.swagger.io</con:endpoint><con:parameters/></con:request></con:method></con:resource><con:resource name="/user/createWithArray" path="/user/createWithArray" id="894dc892-94f6-41a8-9ab8-fb8754889aac"><con:settings/><con:parameters/><con:method name="createUsersWithArrayInput" id="9235fddf-30f5-4f50-a42c-32e65a1e9064" method="POST"><con:description>
-Creates list of users with given input array</con:description><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status/><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status/><con:params/></con:representation><con:request name="Request 1" id="8fbed165-d032-4717-aaab-713735572282" mediaType="application/json"><con:settings/><con:endpoint>http://petstore.swagger.io</con:endpoint><con:parameters/></con:request></con:method></con:resource><con:resource name="/user/createWithList" path="/user/createWithList" id="26495ab6-a3ae-4a7d-85a0-30682fded8b8"><con:settings/><con:parameters/><con:method name="createUsersWithListInput" id="697625f4-3bc2-4c96-9db0-6c6c4642dde0" method="POST"><con:description>
-Creates list of users with given input array</con:description><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status/><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status/><con:params/></con:representation><con:request name="Request 1" id="c6b4615d-d423-4d64-89c1-bcc0298dc999" mediaType="application/json"><con:settings/><con:endpoint>http://petstore.swagger.io</con:endpoint><con:parameters/></con:request></con:method></con:resource><con:resource name="/user/login" path="/user/login" id="c50588e4-9ef3-42ad-8bcc-7047b166e04a"><con:settings/><con:parameters/><con:method name="loginUser" id="e8df6753-9032-4e88-a3b2-ac3130fb723b" method="GET"><con:description>
-Logs user into the system</con:description><con:settings/><con:parameters><con:parameter required="true"><con:name>username</con:name><con:style>QUERY</con:style><con:description>The user name for login</con:description></con:parameter><con:parameter required="true"><con:name>password</con:name><con:style>QUERY</con:style><con:description>The password for login in clear text</con:description></con:parameter></con:parameters><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>400</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>400</con:status><con:params/></con:representation><con:request name="Request 1" id="6c274358-4459-4bb7-8b4e-c1def54a5c83" mediaType="application/json"><con:settings/><con:endpoint>http://petstore.swagger.io</con:endpoint><con:parameters/></con:request></con:method></con:resource><con:resource name="/user/logout" path="/user/logout" id="9224db3d-e815-4c59-ae55-a1494446c22a"><con:settings/><con:parameters/><con:method name="logoutUser" id="60bbd5de-2656-4af7-90f3-d931a05397d5" method="GET"><con:description>
-Logs out current logged in user session</con:description><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status/><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status/><con:params/></con:representation><con:request name="Request 1" id="347e3084-13a4-44a7-ac26-d9c4d2db9785" mediaType="application/json"><con:settings/><con:endpoint>http://petstore.swagger.io</con:endpoint><con:parameters/></con:request></con:method></con:resource><con:resource name="/user/{username}" path="/user/{username}" id="a6a3c177-6c9f-4a15-a07a-50849d4260bb"><con:settings/><con:parameters/><con:method name="getUserByName" id="aee76a3d-56d5-40af-85f6-601427b1f5e9" method="GET"><con:description>
-Get user by user name</con:description><con:settings/><con:parameters><con:parameter required="true"><con:name>username</con:name><con:style>TEMPLATE</con:style><con:description>The name that needs to be fetched. Use user1 for testing. </con:description></con:parameter></con:parameters><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>400</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>400</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>404</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>404</con:status><con:params/></con:representation><con:request name="Request 1" id="a2a9a538-6663-4a46-a19c-586b4eba4a44" mediaType="application/json"><con:settings/><con:endpoint>http://petstore.swagger.io</con:endpoint><con:parameters/></con:request></con:method><con:method name="updateUser" id="409cd86f-79d5-4471-a9c0-4debcb52448b" method="PUT"><con:description>This can only be done by the logged in user.
-Updated user</con:description><con:settings/><con:parameters><con:parameter required="true"><con:name>username</con:name><con:style>TEMPLATE</con:style><con:description>name that need to be updated</con:description></con:parameter></con:parameters><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>400</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>400</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>404</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>404</con:status><con:params/></con:representation><con:request name="Request 1" id="7708424d-5a08-4070-bc73-b096519176f0" mediaType="application/json"><con:settings/><con:endpoint>http://petstore.swagger.io</con:endpoint><con:parameters/></con:request></con:method><con:method name="deleteUser" id="d7d67662-91fe-4f71-966a-92417494bdf3" method="DELETE"><con:description>This can only be done by the logged in user.
-Delete user</con:description><con:settings/><con:parameters><con:parameter required="true"><con:name>username</con:name><con:style>TEMPLATE</con:style><con:description>The name that needs to be deleted</con:description></con:parameter></con:parameters><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>400</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>400</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>404</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>404</con:status><con:params/></con:representation><con:request name="Request 1" id="14f995b3-1ec3-4522-9237-8880710d008d" mediaType="application/json"><con:settings/><con:endpoint>http://petstore.swagger.io</con:endpoint><con:parameters/></con:request></con:method></con:resource></con:interface><con:interface xsi:type="con:WsdlInterface" id="23320748-32f7-4f03-ab40-80591c2b15b1" wsaVersion="NONE" name="GlobalWeatherSoap12" type="wsdl" bindingName="{http://www.webserviceX.NET}GlobalWeatherSoap12" soapVersion="1_2" anonymous="optional" definition="http://www.webservicex.net/globalweather.asmx?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://www.webservicex.net/globalweather.asmx</con:endpoint></con:endpoints><con:operation id="3d53ef7a-b345-4c89-98bd-ddda9ca916e6" isOneWay="false" action="http://www.webserviceX.NET/GetCitiesByCountry" name="GetCitiesByCountry" bindingOperationName="GetCitiesByCountry" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="e803cbe4-ae91-46b3-9d40-921ca6ed221d" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.webservicex.net/globalweather.asmx</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:web="http://www.webserviceX.NET">\r
-   <soap:Header/>\r
-   <soap:Body>\r
-      <web:GetCitiesByCountry>\r
-         <!--Optional:-->\r
-         <web:CountryName>?</web:CountryName>\r
-      </web:GetCitiesByCountry>\r
-   </soap:Body>\r
-</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.webserviceX.NET/GlobalWeatherSoap/GetCitiesByCountryRequest"/></con:call></con:operation><con:operation id="bb10416b-e7e6-4cc7-bdcf-a8b9f01653bc" isOneWay="false" action="http://www.webserviceX.NET/GetWeather" name="GetWeather" bindingOperationName="GetWeather" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="86c466cd-ccb3-46f3-a890-2479068c21cb" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.webservicex.net/globalweather.asmx</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:web="http://www.webserviceX.NET">\r
-   <soap:Header/>\r
-   <soap:Body>\r
-      <web:GetWeather>\r
-         <!--Optional:-->\r
-         <web:CityName>?</web:CityName>\r
-         <!--Optional:-->\r
-         <web:CountryName>?</web:CountryName>\r
-      </web:GetWeather>\r
-   </soap:Body>\r
-</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.webserviceX.NET/GlobalWeatherSoap/GetWeatherRequest"/></con:call></con:operation></con:interface><con:testSuite name="DriverSuite" id="8544ffe4-2743-4588-9991-10423bbb646a"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Driver" searchProperties="true" id="cfb0e8a1-c018-4501-a420-2e014d41ffb4"><con:settings/><con:testStep type="groovy" name="AddJars" id="e108b54b-ff24-49c1-ba74-ec6b9db6d819"><con:settings/><con:config><script>import java.io.File;
-
-/*Add Required JAR Files in Driver Script*/
-def groovyUtils = new com.eviware.soapui.support.GroovyUtils( context )
-def classpathHacker = new com.eviware.soapui.support.ClasspathHacker ()
-File dir = new File(groovyUtils.getProjectPath()+"/Miscellaneous/Required_Jars");
-File[] files = dir.listFiles(new FilenameFilter() {
-    public boolean accept(File direc, String name) {
-        return name.toLowerCase().endsWith(".jar");
-    }
-});
-
-for(File file : files)
-{
-	log.info file.getAbsolutePath()
-	classpathHacker.addFile( file )
-	com.eviware.soapui.support.ClasspathHacker.addFile( file )	
-	com.eviware.soapui.support.ClasspathHacker.addURL( new URL("file://" + file.getAbsolutePath()) )
-}</script></con:config></con:testStep><con:testStep type="groovy" name="DriverGroovyScript" id="718ef979-b345-477d-9793-c2d0a2d35bcc"><con:settings/><con:config><script><![CDATA[import java.io.*;
+import java.io.*;
 import java.sql.*;
 import java.sql.ResultSet;
 import java.text.*;
@@ -379,6 +63,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import com.microsoft.sqlserver.jdbc.*;
+
 
 String ParentFolder = null;
 
@@ -1628,6 +1313,8 @@ if (runtestDataAccess.fileExist())
 
   ReportingClassOBJ.masterMethod(projectPath, ReportPath, TestSuiteBeanOBJ, XSLTSource, Project, Execution_Date, Execution_Time, TestSuiteName, Environment, TC_Endpoint);
 
+   ReportingClassOBJ.copyFile(new File(ReportPath+"/Summary.html"), new File(context.expand('${projectDir}') + "/Summary.html"));
+
  } /*End of if RS null checking*/
 
 } /*end of if - connection checking*/
@@ -1912,6 +1599,7 @@ public String getSettingsProperty(String propKey) {
  }
  return strValue;
 }
+
 
 public Connection getMySQlConnection() {
 
@@ -4685,6 +4373,10 @@ public class ReportingClass {
 
     "<tbody>");
 
+	
+   String[] temp = DesReportPath.split("/Results/")
+
+    String reportPath = "https://storage.googleapis.com/soapui_results/Results/"+temp[1]
 
    ArrayList < DataSet_TestCaseBean > noOfTCs = new ArrayList < DataSet_TestCaseBean > ();
 
@@ -4697,7 +4389,7 @@ public class ReportingClass {
 
     writer.write("<tr style=\"background-color:#FFFFFF\">" +
 
-     "<td style=\"text-align: left;\"><b>" + "<a class=\"TCMeta\" id=\"TC\" href=\"" + "./" + noOfTCs.get(i).getTestCaseName() + "/TestStepRunSummary.xml" + "\">" + noOfTCs.get(i).getTestCaseName() + "</a>" + "</b></font></td>" +
+     "<td style=\"text-align: left;\"><b>" + "<a class=\"TCMeta\" id=\"TC\" href=\"" + reportPath +"/"+  noOfTCs.get(i).getTestCaseName() + "/TestStepRunSummary.xml" + "\">" + noOfTCs.get(i).getTestCaseName() + "</a>" + "</b></font></td>" +
 
      "<td>" + noOfTCs.get(i).getTestCaseDescription() + "</td>" +
 
@@ -4721,7 +4413,7 @@ public class ReportingClass {
 
      "</td>" +
 
-     "<td style=\"text-align: left;\"><b>" + "<a href=\"" + "./RQ-RS/" + noOfTCs.get(i).getTestCaseName() + ".txt" + "\">" + "RQ-RS" + "</a>" + "</b></font></td>" +
+     "<td style=\"text-align: left;\"><b>" + "<a href=\"" + reportPath + "/RQ-RS/" + noOfTCs.get(i).getTestCaseName() + ".txt" + "\">" + "RQ-RS" + "</a>" + "</b></font></td>" +
 
      "</tr>");
 
@@ -4761,7 +4453,7 @@ public class ReportingClass {
 
     "</div>" +
 
-    "<br><div align=\"center\"><div color=\"000001\" letter-spacing =\"1px\" font-family = \"Georgia,\"Times New Roman\", Times, serif\" font-size = \"14px\" font-weight = \"normal\" align=\"center\">Result folder location : </div>" + "<a href=\"" + DesReportPath + "\">" + DesReportPath + "</a></div>" +
+    "<br><div align=\"center\"><div color=\"000001\" letter-spacing =\"1px\" font-family = \"Georgia,\"Times New Roman\", Times, serif\" font-size = \"14px\" font-weight = \"normal\" align=\"center\">Result folder location : </div>" + "<a href=\"" + reportPath + "\">" + reportPath + "</a></div>" +
 
     "<br><div align=\"left\"><div color=\"000001\" letter-spacing =\"1px\" font-family = \"Georgia,\"Times New Roman\", Times, serif\" font-size = \"14px\" font-weight = \"normal\" align=\"center\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Report best view	 in Internet Explorer</div></div>" +
 
@@ -4776,8 +4468,6 @@ public class ReportingClass {
    e.printStackTrace();
 
   }
-
-
 
  }
 
@@ -4931,45 +4621,4 @@ public class ReportingClass {
 
  }
 
-}]]></script></con:config></con:testStep><con:testStep type="properties" name="In-Properties" id="49197af4-363a-4e7e-9b70-0d4b2594d260"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>TestSuiteName</con:name><con:value>SANITY</con:value></con:property><con:property><con:name>IN-DataSheetName</con:name><con:value>AllServiceTestData.xlsx</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="properties" name="Out-Properties" id="e06b1604-4cac-40f3-9551-04d87df15fe8"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>TestCaseNotFound</con:name><con:value>0</con:value></con:property><con:property><con:name>Pass_Complex</con:name><con:value>0</con:value></con:property><con:property><con:name>Pass_Medium</con:name><con:value>1</con:value></con:property><con:property><con:name>Pass_Simple</con:name><con:value>0</con:value></con:property><con:property><con:name>Fail_Complex</con:name><con:value>0</con:value></con:property><con:property><con:name>Fail_Medium</con:name><con:value>0</con:value></con:property><con:property><con:name>Fail_Simple</con:name><con:value>0</con:value></con:property></con:properties></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:properties><con:property><con:name>Description</con:name><con:value>abc</con:value></con:property></con:properties><con:reportParameters/></con:testSuite><con:testSuite name="SANITY" id="82d1d9b5-89bb-4c76-907d-58f176f91b50"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="false" failTestCaseOnErrors="false" keepSession="false" maxResults="0" name="DEMO_Weather_API_REST" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="" id="82cd2668-f970-493d-a32d-2bfdc13a87ad"><con:settings/><con:testStep type="properties" name="In-Properties" id="7275f42e-424b-4151-ad0c-ee6b58e73169"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>ZipCode</con:name><con:value>63366</con:value></con:property><con:property><con:name>CountryCode</con:name><con:value>US</con:value></con:property><con:property><con:name>AppID</con:name><con:value>08fb8099a3c5d479ebfceddc4106b28f</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="properties" name="Assertion" id="7d96c904-6a28-4743-b7af-83972cc6f45e"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>CityName</con:name><con:value>O Fallon</con:value></con:property><con:property><con:name>Country</con:name><con:value>US</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="groovy" name="Environment Setup" id="c7e9deaa-9eae-46d4-b648-8a6ef1464a69"><con:settings/><con:config><script>import com.eviware.soapui.support.types.StringToStringMap 
-
-def testSuite = context.testCase.testSuite; 
-def Endpoint = testSuite.getPropertyValue("EndPoint")
-log.info Endpoint
-testRunner.testCase.testSteps["Step1-Get_Weather_Info"].getHttpRequest().setEndpoint(Endpoint);
-</script></con:config></con:testStep><con:testStep type="restrequest" name="Step1-Get_Weather_Info" id="adc8d922-d7ad-4817-a35d-0b06f978a97a"><con:settings/><con:config service="http://api.openweathermap.org" resourcePath="/data/2.5/weather" methodName="Weather" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Step 1 - Get_Weather_Info" mediaType="application/json" id="27ae267e-f78f-489e-8de2-0f170fe891e5"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://api.openweathermap.org</con:endpoint><con:request/><con:originalUri>http://api.openweathermap.org/data/2.5/weather</con:originalUri><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes" id="1ec60d07-2d35-4e5b-a2e1-c10c0b67f4d7"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="XPath Match" name="Validate city name" id="89fce98f-4410-485a-aee8-21d31c173d3e"><con:configuration><path>declare namespace ns1='http://api.openweathermap.org/data/2.5/weather';
-//ns1:name</path><content>${Assertion#CityName}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="Validate country code" id="bee23601-f358-4f39-9c23-99fe53e918f9"><con:configuration><path>declare namespace ns1='http://api.openweathermap.org/data/2.5/weather';
-//ns1:sys/ns1:country</path><content>${Assertion#Country}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="Simple Contains" id="b796edea-55c0-4ec3-bc50-f88bd2993106" name="Contains"><con:configuration><token>${Assertion#CityName}</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:username>WNGAutomation</con:username><con:password>#98_Aug_34</con:password><con:domain>NA</con:domain><con:selectedAuthProfile>NTLM</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>NTLM</con:addedBasicAuthenticationTypes><con:authType>NTLM</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
-  <con:entry key="zip" value="${In-Properties#ZipCode},${In-Properties#CountryCode}"/>
-  <con:entry key="appid" value="${In-Properties#AppID}"/>
-</con:parameters><con:parameterOrder><con:entry>zip</con:entry><con:entry>appid</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:tearDownScript/><con:properties><con:property><con:name>API_KEY</con:name><con:value>MzlhXYJQFEhglha2CwzBnKulmBytNVHunnsu3QEZseA</con:value></con:property></con:properties></con:testCase><con:testCase failOnError="false" failTestCaseOnErrors="false" keepSession="false" maxResults="0" name="DEMO_Weather_API_SOAP" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="" id="484e67ff-aace-4c8f-974f-8892c38f381b"><con:settings/><con:testStep type="properties" name="In-Properties" id="daee6071-238a-400c-adff-7085b1cf20a0"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>Country</con:name><con:value>united states</con:value></con:property><con:property><con:name>CityName</con:name><con:value>new york</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="properties" name="Assertion" id="74b6d769-9347-46c3-81c6-55281b318691"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>Location</con:name><con:value>NEW YORK LA GUARDIA AIRPORT , NY, United States</con:value></con:property><con:property><con:name>Status</con:name><con:value>Success</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="groovy" name="Environment Setup" disabled="true" id="23e7fabe-5d71-4261-ab92-c202326295eb"><con:settings/><con:config><script>import com.eviware.soapui.support.types.StringToStringMap 
-
-def testSuite = context.testCase.testSuite; 
-def Endpoint = testSuite.getPropertyValue("EndPoint")
-log.info Endpoint
-testRunner.testCase.testSteps["Step 1 - Get_Weather_Info"].getHttpRequest().setEndpoint(Endpoint);
-</script></con:config></con:testStep><con:testStep type="request" name="Step1-Get_Weather_Info_Soap" id="e90fb7e5-00f0-4363-943a-685f32d9f7af"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>GlobalWeatherSoap</con:interface><con:operation>GetWeather</con:operation><con:request name="Step1-Get_Weather_Info_Soap" id="d48d564b-a519-4890-86df-0caaf16602a3"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Content-Type" value="text/xml; charset=utf-8" xmlns="http://eviware.com/soapui/config"/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.webservicex.net/globalweather.asmx</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-  <soap:Body>
-    <GetWeather xmlns="http://www.webserviceX.NET">
-      <CityName>${In-Properties#CityName}</CityName>
-      <CountryName>${In-Properties#Country}</CountryName>
-    </GetWeather>
-  </soap:Body>
-</soap:Envelope>]]></con:request><con:assertion type="SOAP Response" id="362ec030-f473-4763-90c9-fb137709dfc7"/><con:assertion type="Simple Contains" name="Validate Location" id="f3d9dccd-4364-40fa-a923-634998b63812"><con:configuration><token>${Assertion#Location}</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" name="Validate Status" id="5a89868b-7f6e-4c45-8240-a77bbd462750"><con:configuration><token>${Assertion#Status}</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:username>WNGAutomation</con:username><con:password>#98_Aug_34</con:password><con:domain>NA</con:domain><con:selectedAuthProfile>NTLM</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>NTLM</con:addedBasicAuthenticationTypes><con:authType>NTLM</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties><con:property><con:name>API_KEY</con:name><con:value>MzlhXYJQFEhglha2CwzBnKulmBytNVHunnsu3QEZseA</con:value></con:property></con:properties></con:testCase><con:properties><con:property><con:name>EndPoint</con:name><con:value>http://api.openweathermap.org</con:value></con:property></con:properties></con:testSuite><con:testSuite name="REGRESSION" id="12fe92de-a36f-4174-9eb3-8bcc5102dea3"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="PETSTORE_API_ORCHESTRATION_SC1" searchProperties="true" id="62821e49-b436-4203-b68a-f11b605c0b8f"><con:settings/><con:testStep type="properties" name="In-Properties" id="8c607274-4a19-42bc-a32a-5c2b12764481"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>id</con:name><con:value>2</con:value></con:property><con:property><con:name>type</con:name><con:value>Cat</con:value></con:property><con:property><con:name>name</con:name><con:value>Snicker</con:value></con:property><con:property><con:name>photourl</con:name><con:value>Location</con:value></con:property><con:property><con:name>tag</con:name><con:value>Grey</con:value></con:property><con:property><con:name>status</con:name><con:value>JustSold</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="properties" name="TransferProperties" id="73cfcf07-23ec-4083-aec6-eba56ed80b80"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>PetStatus</con:name><con:value>JustSold</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="properties" name="Assertion" id="6f96ff0d-229d-49c4-8469-25547622d6dc"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>HttpStatus</con:name><con:value>200</con:value></con:property><con:property><con:name>AssertName</con:name><con:value>Snicker</con:value></con:property><con:property><con:name>AssertTag</con:name><con:value>Grey</con:value></con:property><con:property><con:name>AssertStatus</con:name><con:value>JustSold</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="restrequest" name="Step1-UpdatePet" id="940b1847-21e9-4d94-a444-3d8b7ab7630d"><con:settings/><con:config service="Swagger Petstore" resourcePath="/v2/pet" methodName="updatePet" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Step 1 - UpdatePet" id="ef93fb47-b3a9-4aeb-9ea8-e498feef6460" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${#TestSuite#EndPoint}</con:endpoint><con:request>{
-  "id": ${In-Properties#id},
-  "category": {
-    "id": ${In-Properties#id},
-    "name": "${In-Properties#type}"
-  },
-  "name": "${In-Properties#name}",
-  "photoUrls": [
-    "${In-Properties#photourl}"
-  ],
-  "tags": [
-    {
-      "id": ${In-Properties#id},
-      "name": "${In-Properties#tag}"
-    }
-  ],
-  "status": "${In-Properties#status}"
-}</con:request><con:originalUri>http://petstore.swagger.io/v2/pet</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="dab22041-bc4d-4db9-9a31-c6159f029e72" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="Step2-GetPetById" id="27b5bfab-8cce-49f2-814c-6fec498dcbf1"><con:settings/><con:config service="Swagger Petstore" resourcePath="/v2/pet/{petId}" methodName="getPetById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Step 2 - GetPetById" id="6cce0700-b154-4b45-b22c-ba37c5a836db" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${#TestSuite#EndPoint}</con:endpoint><con:request/><con:originalUri>http://petstore.swagger.io/v2/pet/</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="07c776a8-2678-4150-8756-89830639c56c" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="JsonPath Match" id="77889002-8098-4478-8f41-4b654176c2c3" name="AssertName Match"><con:configuration><path>$.name</path><content>${Assertion#AssertName}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" id="4e60cc51-555f-4238-81f3-6b109e4b078a" name="PetStatus Match"><con:configuration><path>$.status</path><content>${Assertion#AssertStatus}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="petId" value="${In-Properties#Id}" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:restRequest></con:config></con:testStep><con:testStep type="transfer" name="PetStatus" id="fb0d6321-5e30-4835-b3c4-30317f98b4c2"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="true"><con:name>PetStatus</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>Step2-GetPetById</con:sourceStep><con:sourcePath>$.status</con:sourcePath><con:targetType>PetStatus</con:targetType><con:targetStep>TransferProperties</con:targetStep><con:targetPath/><con:type>JSONPATH</con:type><con:targetTransferType>JSONPATH</con:targetTransferType><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="restrequest" name="Step3-FindPetsByStatus" id="80462e7c-39be-4fb5-8a57-5bb90165c3f4"><con:settings/><con:config service="Swagger Petstore" resourcePath="/v2/pet/findByStatus" methodName="findPetsByStatus" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Step 3 - FindPetsByStatus" id="5d27db9b-3b95-47b2-b3cc-3441bb6b4ffb" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${#TestSuite#EndPoint}</con:endpoint><con:request/><con:originalUri>http://petstore.swagger.io/v2/pet/findByStatus</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="b9ceed11-a83d-4cc5-b26e-e9e5b39eaf90" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="status" value="${TransferProperties#PetStatus}" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="PETSTORE_API_ORCHESTRATION_SC2" searchProperties="true" id="fba25761-e681-4804-ae13-edfc995b6024"><con:settings/><con:testStep type="properties" name="In-Properties" id="3d9b6bdd-4a55-41d9-8413-1f60d6026312"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>PetId</con:name><con:value>0000</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="properties" name="Assertion" id="590bcb14-0667-4881-a82d-8882ccea5d7b"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>HttpStatus</con:name><con:value>200</con:value></con:property><con:property><con:name>AssertName</con:name><con:value>Rocky</con:value></con:property><con:property><con:name>AssertStatus</con:name><con:value>NewArrival</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="restrequest" name="Step1-GetPetById" id="7ec185e8-279b-4e17-b69d-a90450b200a2"><con:settings/><con:config service="Swagger Petstore" resourcePath="/v2/pet/{petId}" methodName="getPetById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Step 1 - GetPetById" id="6cce0700-b154-4b45-b22c-ba37c5a836db" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${#TestSuite#EndPoint}</con:endpoint><con:request/><con:originalUri>http://petstore.swagger.io/v2/pet/</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="07c776a8-2678-4150-8756-89830639c56c" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="JsonPath Match" id="77889002-8098-4478-8f41-4b654176c2c3" name="AssertName Match"><con:configuration><path>$.name</path><content>${Assertion#Name}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" id="4e60cc51-555f-4238-81f3-6b109e4b078a" name="PetStatus Match"><con:configuration><path>$.status</path><content>${Assertion#AssertStatus}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="petId" value="${In-Properties#PetId}" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:properties><con:property><con:name>EndPoint</con:name><con:value>http://petstore.swagger.io</con:value></con:property></con:properties></con:testSuite><con:properties><con:property><con:name>Environment</con:name><con:value>XQA2</con:value></con:property><con:property><con:name>Suite</con:name><con:value>TEST</con:value></con:property><con:property><con:name>DataConfiguration</con:name><con:value>ODYMO</con:value></con:property><con:property><con:name>Project</con:name><con:value>EMA_Regression</con:value></con:property><con:property><con:name>JiraUpload</con:name><con:value>true</con:value></con:property><con:property><con:name>JiraRelease</con:name><con:value>2.1.1.35</con:value></con:property><con:property><con:name>RunInServer</con:name><con:value>Y</con:value></con:property><con:property><con:name>ReportingServerPath</con:name><con:value>\\devcorp.deverac.local\dfsroot\NAS\data01_RQATtesting</con:value></con:property></con:properties><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+}
