@@ -1,9 +1,8 @@
 pipeline {
     agent any
     stages {
-        stage('Clone SOAPUI Automation Framework') {
+        stage('Set Environment Variables') {
             steps {
-                git branch: 'master', url: 'https://github.com/Sankalan1987/SOAPUI_Framework.git'
                 sh "sed -i -e \"/DataConfiguration=/ s/=.*/=\"${DataConfiguration}\"/\" -e \"/Suite=/ s/=.*/=\"${Suite}\"/\" -e \"/Environment=/ s/=.*/=\"${TestEnvironment}\"/\" Global_Settings.properties"
             }
         }
