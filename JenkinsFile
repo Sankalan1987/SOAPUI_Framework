@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+    stages {
+        stage('Clone SOAPUI Automation Framework') {
+            steps {
+                git branch: 'master', url: 'https://github.com/Sankalan1987/SOAPUI_Framework.git'
+                sh "sed -i -e \"/DataConfiguration=/ s/=.*/=\"${DataConfiguration}\"/\" -e \"/Suite=/ s/=.*/=\"${Suite}\"/\" -e \"/Environment=/ s/=.*/=\"${TestEnvironment}\"/\" Global_Settings.properties"
+            }
+        }
+        stage('Run Test Suite') {
+            agent { 
+                docker { 
+                    image 'sankalan1987/docker_testimage:2.0.0' 
+                    reuseNode true
+                } 
+            }
+            steps {
+                sh "/opt/SoapUI-5.2.1/bin/testrunner.sh -s\"DriverSuite\" -c\"Driver\" \"/var/jenkins_home/workspace/VenkateshTest/Project.xml\""
+            }
+        }
+        stage('Upload Results to Google Storage Bucket') {
+            steps {
+                sh "gsutil -m rsync -r /var/jenkins_home/workspace/VenkateshTest/Results gs://soapui_results/Results"
+            }
+        }
+        stage('Send Email Notification') {
+             steps {
+                emailext(
+                    mimeType: 'text/html', 
+                    replyTo: 'sankalan.banerjee@ehi.com', 
+                    subject: 'AUTOMATED EXECUTION SUMMARY - $Suite - $TestEnvironment - Build # $BUILD_NUMBER - SUCCESSFUL!!!', 
+                    to: 'sankalan.banerjee@cognizant.com,Venkatesh.Brahmavar@ehi.com,venkateshachar@gmail.com,Venkatesh.Brahmavar@cognizant.com,banerjee.sankalan2@gmail.com,sankalan.banerjee@ehi.com', 
+                    body: '${FILE, path="Summary.html"}'
+                )
+            }
+        }
+    }
+}
