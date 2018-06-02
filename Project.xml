@@ -4397,7 +4397,7 @@ public class ReportingClass {
 
    String diff = diffSeconds.toString() + " Seconds";
 
-   def HTMLReportPath = DesReportPath + "\\Summary.html";
+   def HTMLReportPath = DesReportPath + "/Summary.html";
 
    FileWriter out = new FileWriter(HTMLReportPath, false);
 
